@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id="custom-loading-bar"></div>
+    <div id="custom-loading-bar" style="background: red; height: 20px"></div>
   </div>
 </template>
 
@@ -15,8 +15,6 @@
 }
 
 #custom-loading-bar {
-  height: 10px;
-  background: green;
   position: fixed;
   top: 0;
   left: 0;
