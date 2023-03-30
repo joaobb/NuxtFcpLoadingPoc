@@ -1,32 +1,40 @@
 <!DOCTYPE html>
 <html {{ HTML_ATTRS }}>
-<head {{ HEAD_ATTRS }}>
-  {{ HEAD }}
-</head>
-<body {{ BODY_ATTRS }}>
-<div id="custom-loading-bar" style="z-index: 1"></div>
-{{ APP }}
-</body>
+  <head {{ HEAD_ATTRS }}>
+    {{ HEAD }}
+  </head>
+  <body {{ BODY_ATTRS }}>
+    {{ APP }}
 
-<style>
-  @keyframes barGrow {
-    from {
-      right: 100%;
+    <script>
+      const bar = document.createElement('div')
+      bar.id = 'custom-loading-bar'
+      bar.style.zIndex = 1
+      const showLoad = new URLSearchParams(location.search).get('load')
+
+      if (showLoad === '1') document.body.appendChild(bar)
+    </script>
+  </body>
+
+  <style>
+    @keyframes barGrow {
+      from {
+        right: 100%;
+      }
+      to {
+        right: 0;
+        display: none;
+      }
     }
-    to {
-      right: 0;
-      display: none;
+
+    #custom-loading-bar {
+      height: 10px;
+      background: green;
+      position: fixed;
+      top: 0;
+      left: 0;
+
+      animation: barGrow 5s ease-in-out;
     }
-  }
-
-  #custom-loading-bar {
-    height: 10px;
-    background: green;
-    position: fixed;
-    top: 0;
-    left: 0;
-
-    animation: barGrow 5s ease-in-out;
-  }
-</style>
+  </style>
 </html>
